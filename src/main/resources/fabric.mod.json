@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "zabytlib",
+  "version": "${version}",
+  "name": "ZabytLib",
+  "description": "zabyt's shared HUD/config/screen toolkit for Fabric mods.",
+  "authors": [
+    "zabyt"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "environment": "*",
+  "icon": "assets/zabytlib/icon.png",
+  "entrypoints": {
+    "client": [
+      "com.zabyt.lib.ZabytLib"
+    ],
+    "modmenu": [
+      "com.zabyt.lib.ZabytLibModMenu"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "~26.2",
+    "java": ">=25",
+    "modmenu": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}
