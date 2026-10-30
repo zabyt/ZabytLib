@@ -33,6 +33,10 @@ The built jar ends up in `build/libs/`.
 - Minecraft `~26.2`, Fabric Loader `>=0.19.3`, Java `>=25`
 - [ModMenu](https://modrinth.com/mod/modmenu) at runtime
 
+## Credits
+
+The menu-icon + mods-list concept is a tribute to [ukulib](https://github.com/uku3lig/ukulib) by uku3lig - shoutout to uku for the original idea.
+
 ## License
 
 MIT
