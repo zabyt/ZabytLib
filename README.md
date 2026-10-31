@@ -8,6 +8,9 @@ A small library mod that other zabyt mods are built on top of. Instead of every 
 
 - **Menu icon integration** - adds an icon button on the title screen and pause menu in the style of ukulib, which opens a list of every mod using the library, each row showing the mod's own icon and name; clicking a row opens that mod's config screen.
 - **SimpleConfig** - JSON-backed config classes: declare public fields with defaults, load/save with one call.
+- **AutoConfigScreen** - declare config fields with the `@ConfigEntry` annotation (label/min/max) and get a full ModMenu-compatible settings screen for free: toggles, sliders, numeric fields, enum dropdowns and strings, saved automatically.
+- **Toast API** - `ZabytToasts.show(...)` for vanilla-style update/status notifications.
+- **Update checker** - checks Modrinth for newer releases of the zabyt mods on the title screen and shows a toast; toggle in ZabytLib's own config.
 - **HUD helpers** - draggable HUD screens, screen zones, HUD info panels, shared HUD colors and timers so all zabyt HUDs look and behave the same.
 
 ## Mods using it
