@@ -44,6 +44,19 @@ public class ZabytLib implements ClientModInitializer {
     private static boolean menuTextureReady = false;
     private static final java.util.Set<String> CONFIG_USERS = new java.util.TreeSet<>();
     private static final java.util.Map<String, Identifier> MOD_ICON_TEXTURES = new java.util.HashMap<>();
+    private static final java.util.Set<String> NOTIFIED_PACKS = new java.util.HashSet<>();
+
+
+    public static java.util.Set<String> getConfigUserIds() {
+        return new java.util.HashSet<>(CONFIG_USERS);
+    }
+
+    public static void notifyUpdate(Minecraft client, String modId, String projectId) {
+        if (!NOTIFIED_PACKS.add(modId)) {
+            return;
+        }
+        com.zabyt.lib.util.ModrinthUpdateChecker.check(client, modId, projectId);
+    }
 
 
     public static Identifier modIconTexture(Minecraft minecraft, String modId) {
@@ -132,10 +145,12 @@ public class ZabytLib implements ClientModInitializer {
                 return;
             }
             ZabytLibConfig cfg = ZabytLibConfig.get();
+            if (cfg.updateCheckerEnabled && screen instanceof TitleScreen) {
+                runUpdateChecks(client);
+            }
             if (!cfg.menuIconEnabled || !ensureMenuIconTexture(client)) {
                 return;
-            }
-            var widgets = Screens.getWidgets(screen);
+            }            var widgets = Screens.getWidgets(screen);
             int[] spot = alignIconRow(widgets);
             int size, x, y;
             if (spot != null) {
@@ -161,6 +176,21 @@ public class ZabytLib implements ClientModInitializer {
         LOGGER.info("ZabytLib initialized");
     }
 
+
+    private static void runUpdateChecks(Minecraft client) {
+        notifyUpdate(client, "zabytlib", "zabytlib");
+        notifyUpdate(client, "armorhud", "zabyts-hud-stuff");
+        notifyUpdate(client, "mmplayer", "mmplayer");
+        notifyUpdate(client, "neverrunout", "neverrunout");
+    }
+
+    public static ZabytLibAboutScreen aboutScreen(Screen parent) {
+        return new ZabytLibAboutScreen(parent);
+    }
+
+    public static com.zabyt.lib.screen.AutoConfigScreen createConfigScreen(String modId, com.zabyt.lib.config.SimpleConfig config, Screen parent) {
+        return new com.zabyt.lib.screen.AutoConfigScreen(modId, config, parent);
+    }
 
     private static int[] alignIconRow(List<AbstractWidget> widgets) {
         List<AbstractWidget> squares = new ArrayList<>();

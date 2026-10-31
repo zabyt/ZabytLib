@@ -15,6 +15,7 @@ public class ZabytLibConfig extends SimpleConfig {
     public String menuIconCorner = "top_left";
     public int menuIconSize = 24;
     public int menuIconMargin = 4;
+    public boolean updateCheckerEnabled = true;
     public String infoTitle = "ZabytLib";
     public List<String> infoLines = new ArrayList<>(List.of(
             "zabyt's hud stuff",
